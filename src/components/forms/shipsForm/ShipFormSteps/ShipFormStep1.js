@@ -22,8 +22,10 @@ function ShipFormStep1(Props) {
     const { handleSubmit } = Props;
     return (
         <Form onSubmit={handleSubmit}>
-                <Field name="Name" type="text" label="Imie" component={MyInput} />
-                <Field name="SurrName" type="text" label="Nazwisko" component={MyInput} />
+                <div style={{display:"flex"}}>
+                    <Field name="Name" style={{margin:"0 .5rem 0 0"}} type="text" label="Imie" component={MyInput} />
+                    <Field name="SurrName" style={{margin:"0 0 0 .5rem"}} type="text" label="Nazwisko" component={MyInput} />
+                </div>
                 <Field name="Sex" type="select" label="Płeć" values={[{ value: "Male", name: "Mężczyzna" }, { value: "Female", name: "Kobieta" }]} component={MyInput} none />   
             <NavButtons>
                 <Button type="submit" variant="contained" color="primary" >Następny</Button>

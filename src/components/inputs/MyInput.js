@@ -5,14 +5,13 @@ export default function MyInput(Props) {
 
     const isError =()=>{
         const { meta: { touched, error } } = Props;
-        return touched && error
+        return touched && !!error
     }
 
 
     const { input, label, type, meta: { error,touched }, none, values, inputProps } = Props;
     return (
-        <>
-            
+        <>            
             {type === "select" && <FormControl>
                 <InputLabel error={isError()} >{label}</InputLabel>
                 <Select
@@ -30,7 +29,7 @@ export default function MyInput(Props) {
                 {isError()&& <FormHelperText error={isError()}>{error}</FormHelperText>} 
             </FormControl>}
             {(["text","date","number"]).includes(type) &&
-                <TextField error={isError()} {...input} label={label} inputProps={inputProps} helperText={isError() ? error : ""} type={type} />
+                <TextField error={isError()} {...input} {...Props} helperText={isError() ? error : ""} />
             }
         </>
     )

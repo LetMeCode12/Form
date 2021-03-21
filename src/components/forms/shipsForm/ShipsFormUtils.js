@@ -10,7 +10,6 @@ const fetchGetShips = () =>{
 
 export const getShips = () => async dispatch =>{
   const data = await fetchGetShips();
-  console.log("Dejta:",data)
   if(!isNil(data)){
       dispatch({type:"ADD_SHIPS",payload:data})
   }

@@ -1,19 +1,13 @@
 import { getTime, fromUnixTime } from "date-fns"
 
 export const submit = (values, dispatch, props) => {
-
-
-    const {goPrev,reset} = props;
-
-    console.log("SUBMIT:", values, dispatch, props);
-
-    reset();
-    goPrev();
+    const {show} = props;
+    show('submitModal',{data:values});
 }
 
 
 
-export const validate = (values, props, state) => {
+export const validate = (values, props) => {
 
 
     const errors = {};
@@ -21,7 +15,6 @@ export const validate = (values, props, state) => {
     if (props.BirthdayDate) {
         const birthDate = props.BirthdayDate.split("-");
         const initDate = props.formInitialValues.Birthday.split("-")
-        console.log("Date",getTime(new Date(birthDate[0], birthDate[1], birthDate[2])))
         if ( birthDate && getTime(new Date(birthDate[0], birthDate[1], birthDate[2])) >= getTime(new Date(initDate[0], initDate[1], initDate[2]))) {
             errors.Birthday = "Należy podać date z przeszłości";
         }
