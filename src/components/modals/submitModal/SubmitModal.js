@@ -5,18 +5,7 @@ import { compose } from "redux";
 import { connectModal } from "redux-modal";
 
 
-  
-  function getModalStyle() {
-    const top = 50 ;
-    const left = 50 ;
-  
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
-  
+    
   const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
@@ -30,8 +19,11 @@ import { connectModal } from "redux-modal";
 
 function SubmitModal(props) {
     const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
-  
+    const modalStyle ={
+        top: `50%`,
+        left: `50%`,
+        transform: `translate(-50%, -50%)`
+    }
     const {data, handleHide,show} = props;
     return (
         <Modal
