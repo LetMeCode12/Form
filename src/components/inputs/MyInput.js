@@ -3,28 +3,20 @@ import { useEffect, useState } from "react"
 
 export default function MyInput(Props) {
 
-    const [_error, setError] = useState(false);
-
-    const checkError = () => {
+    const isError =()=>{
         const { meta: { touched, error } } = Props;
-        if (touched && error) {
-            setError(true);
-        } else {
-            setError(false);
-        }
+        return touched && error
     }
 
-    useEffect(() => {
-        checkError();
-    })
-    const { input, label, type, meta: { error }, none, values, inputProps } = Props;
+
+    const { input, label, type, meta: { error,touched }, none, values, inputProps } = Props;
     return (
         <>
             
             {type === "select" && <FormControl>
-                <InputLabel error={_error} >{label}</InputLabel>
+                <InputLabel error={isError()} >{label}</InputLabel>
                 <Select
-                    error={_error}
+                    error={isError()}
                     value={20}
                     {...input}
                 >
@@ -35,10 +27,10 @@ export default function MyInput(Props) {
                     }
                     {values.map((e)=><MenuItem value={e.value}>{e.name}</MenuItem>)}
                 </Select>
-                {_error&& <FormHelperText error={_error}>{error}</FormHelperText>} 
+                {isError()&& <FormHelperText error={isError()}>{error}</FormHelperText>} 
             </FormControl>}
             {(["text","date","number"]).includes(type) &&
-                <TextField error={_error} {...input} label={label} inputProps={inputProps} helperText={_error ? error : ""} type={type} />
+                <TextField error={isError()} {...input} label={label} inputProps={inputProps} helperText={isError() ? error : ""} type={type} />
             }
         </>
     )
